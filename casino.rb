@@ -6,8 +6,6 @@ class Casino
 
 	def initialize
 		puts "Welcome to the Ruby Casino"
-		puts "What is your name, player?"
-		name = gets.strip
 		@player = Player.new
 	end
 end

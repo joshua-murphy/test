@@ -77,7 +77,7 @@ end
   end
 
   def get_bet(bet)
-    puts "How much would you like to wager? You currently have: $#{@temp_wallet}"
+    puts "How much would you like to wager? You currently have: $" + "#{@temp_wallet}".green
     initial_bet = gets.to_i.round(-1)
     puts "Wager converted to $" + "#{initial_bet}"
     if initial_bet == 0

@@ -109,6 +109,35 @@ def eval_spin(num, bet, wager)
         when 3
           arr_num % 3 == 0 ? success(wager, 2) : failure
       end
+    when "street"
+      case @street_opt
+        when 1
+          arr_num.between?(1, 3) ? success(wager, 11) : failure
+        when 2
+          arr_num.between?(4, 6) ? success(wager, 11) : failure
+        when 3
+          arr_num.between?(7, 9) ? success(wager, 11) : failure
+        when 4
+          arr_num.between?(10, 12) ? success(wager, 11) : failure
+        when 5
+          arr_num.between?(13, 15) ? success(wager, 11) : failure
+        when 6
+          arr_num.between?(16, 18) ? success(wager, 11) : failure
+        when 7
+          arr_num.between?(19, 21) ? success(wager, 11) : failure
+        when 8
+          arr_num.between?(22, 24) ? success(wager, 11) : failure
+        when 9
+          arr_num.between?(25, 27) ? success(wager, 11) : failure
+        when 10
+          arr_num.between?(28, 30) ? success(wager, 11) : failure
+        when 11
+          arr_num.between?(31, 33) ? success(wager, 11) : failure
+        when 12
+          arr_num.between?(34, 36) ? success(wager, 11) : failure
+      end  
+    when "exact"
+      arr_num == @straight_opt ? success(wager, 35) : failure
   end
 end
 

@@ -17,7 +17,7 @@ class Roulette
     puts ""
     print "Place your call: "    
     @bet_options = ["Red", "Black", "Even", "Odd", "Low", "High",
-       "Dozen", "Column" ] #, "Corner", "Street", "Split", "Straight Up"]
+       "Dozen", "Column", "Street", "Exact"]
     print @bet_options.join(", ")
     @bet_options.push("Help")
     puts ""
@@ -36,6 +36,10 @@ class Roulette
         dozen_check(bet)
       when "column"
         column_check(bet)
+      when "street"
+        street_check(bet)
+      when "exact"
+        straight_check(bet)
       else
         get_bet(bet)
     end
@@ -69,10 +73,46 @@ end
     @column_opt = gets.to_i
     case @column_opt
       when 1, 2, 3
-       get_bet(bet)
+        get_bet(bet)
       else
         puts "Invalid response"
         column_check
+    end
+  end
+
+  def street_check(bet)
+    puts "Which set?"
+    puts "1) 1, 2, 3"
+    puts "2) 4, 5, 6"
+    puts "3) 7, 8, 9"
+    puts "4) 10, 11, 12"
+    puts "5) 13, 14, 15"
+    puts "6) 16, 17, 18"
+    puts "7) 19, 20, 21"
+    puts "8) 22, 23, 24"
+    puts "9) 25, 26, 27"
+    puts "10) 28, 29, 30"
+    puts "11) 31, 32, 33"
+    puts "12) 34, 35, 36"
+    @street_opt = gets.to_i
+    case @street_opt
+    when 1..12
+      get_bet(bet)
+    else
+      puts "Invalid response"
+      street_check(bet)
+    end
+  end
+
+  def straight_check(bet)
+    puts "Which number? (1-36)"
+    @straight_opt = gets.to_i
+    case @straight_opt
+    when 1..36
+      get_bet(bet)
+    else
+      puts "Invalid response"
+      straight_check(bet)
     end
   end
 

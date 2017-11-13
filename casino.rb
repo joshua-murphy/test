@@ -1,12 +1,15 @@
 require "pry"
+require_relative 'player'
 
 class Casino
-    def initialize
-        puts "Welcome to the Ruby Casino"
-        puts "What is your name, player?"
-        name = gets.strip
-        #create player instance
-    end
+	attr_accessor :player
+
+	def initialize
+		puts "Welcome to the Ruby Casino"
+		puts "What is your name, player?"
+		name = gets.strip
+		@player = Player.new
+	end
 end
 
 Casino.new

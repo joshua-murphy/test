@@ -47,7 +47,8 @@ end
 def eval_spin(num, bet, wager)
   arr_num = num[:number]
   arr_col = num[:color]
-  puts "Your bet was: " + bet.capitalize
+  puts ""
+  puts "Your call was: " + bet.capitalize
   print "The ball rests on: "
   print "#{arr_num}" + " " + "#{arr_col}".capitalize + "\n"
   case bet
@@ -104,7 +105,7 @@ def success(wager, odds)
 end
 
 def failure
-  puts "You lose"
+  puts "You lose!"
   puts "Your wallet now holds $" + "#{@temp_wallet}"
   @temp_wallet == 0 ? exit : play
 end

@@ -1,6 +1,6 @@
 def spin(passed_bet, wager)
   @nums = [
-    { number: 0, color: "none" },  
+    { number: 0, color: nil},  
     { number: 1, color: "red" },
     { number: 2, color: "black" },
     { number: 3, color: "red" },
@@ -37,7 +37,7 @@ def spin(passed_bet, wager)
     { number: 34, color: "red" },
     { number: 35, color: "black" },
     { number: 36, color: "red" },
-    { number: 00, color: "none" }
+    { number: 00, color: nil }
   ]
 
   rand_num = @nums.sample
@@ -99,6 +99,15 @@ def eval_spin(num, bet, wager)
           arr_num.between?(13, 25) ? success(wager, 2) : failure
         when 3
           arr_num > 24 ? success(wager, 2) : failure
+      end
+    when "column"
+      case @column_opt
+        when 1
+          arr_num % 3 == 1 ? success(wager, 2) : failure
+        when 2
+          arr_num % 3 == 2 ? success(wager, 2) : failure
+        when 3
+          arr_num % 3 == 0 ? success(wager, 2) : failure
       end
   end
 end

@@ -2,7 +2,6 @@ require "pry"
 require "colorize"
 require_relative "player"
 
-
 class Casino
 	attr_accessor :player
 
@@ -13,7 +12,7 @@ class Casino
 	end
 
 	def menu
-		@options = ["Blackjack", "Exit"]		
+		@options = ["Blackjack", "Exit"]
 		@options.each_with_index { |opt, i| puts "#{i + 1}) #{opt}" }
 		choice = gets.to_i - 1
 		case choice

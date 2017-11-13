@@ -56,26 +56,26 @@ def eval_spin(num, bet, wager)
         odds = 1
         success(wager, odds)
       else
-        puts "no!"
+        failure
       end
     when "even"                         #condense even + odd
       if arr_num.even? == true
         success(wager, odds)
       else
-        puts "no!"
+        failure
       end
     when "odd"
       if arr_num.odd? == true
         success(wager, odds)
       else
-        puts "no!"
+        failure
       end
     when "low"                          #condense low + high
       if arr_num != 0
         if arr_num < 19
           success(wager, odds)
         else
-          puts "no!"
+          failure
         end
       else
         puts "oh no!!!!!"
@@ -85,7 +85,7 @@ def eval_spin(num, bet, wager)
         if arr_num > 19
           success(wager, odds)
         else
-          puts "no!"
+          failure
         end
       else
         puts "oh no!!!!!"
@@ -105,5 +105,6 @@ end
 
 def failure
   puts "You lose"
-  play
+  puts "Your wallet now holds $" + "#{@temp_wallet}"
+  @temp_wallet == 0 ? exit : play
 end

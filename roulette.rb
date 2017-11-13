@@ -21,7 +21,7 @@ class Roulette
     print @bet_options.join(", ")
     @bet_options.push("Help")
     puts ""
-    puts "Type 'Help' for more info, or 'Exit' to leave game"          #add help info
+    puts "Type 'Help' for more info, or 'Exit' to leave game"
     bet = gets.strip.downcase
 
     case bet
@@ -48,7 +48,20 @@ end
   
 
   def help_menu
-    puts "here's some help"
+    puts "Welcome to the Roulette help menu!"
+    puts ""
+    puts "Call descriptions:"
+    puts "Red/Black is a call on the color. Payout is 1:1"
+    puts "Even/Odd is a call on the parity. Payout is 1:1"
+    puts "Low is a call on the value (1-18). Payout is 1:1"
+    puts "High is a call on the value (19-36). Payout is 1:1"
+    puts "Dozen is a call on the value (1-12, 13-24, 25-36. Payout is 2:1"
+    puts "Column is a call on the value (3, 6, 9, 12, 15, etc.) Payout is 2:1"
+    puts "Street is a call on the value (1-3, 4-6, 7-10, etc.). Payout is 11:1"
+    puts "Exact is a call on the value (1, 2, 3, 4, 5, etc. Payout is 35:1"
+    puts ""
+    puts "There are two chances to land on 0. This is an immediate loss. No refunds."
+    puts ""
     play
   end
 

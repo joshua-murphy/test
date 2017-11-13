@@ -39,7 +39,6 @@ def spin(passed_bet, wager)
     { number: 36, color: "red" },
     { number: 00, color: nil }
   ]
-
   rand_num = @nums.sample
   bet = passed_bet
   eval_spin(rand_num, passed_bet, wager)  
@@ -138,12 +137,17 @@ def eval_spin(num, bet, wager)
       end  
     when "exact"
       arr_num == @straight_opt ? success(wager, 35) : failure
+    else
+      puts "Invalid call. You will be refunded.".red
+      @temp_wallet += wager
+      play
   end
 end
 
 def success(wager, odds)
   winnings = wager + (wager * odds)
   puts "Congratulations!".green
+  puts ""
   print "Net winnings: $"
   net_win = wager * odds
   puts "#{net_win}".green
@@ -154,6 +158,7 @@ end
 
 def failure
   puts "You lose!".red
+  puts ""
   puts "Your wallet now holds $" + "#{@temp_wallet}".red
   @temp_wallet == 0 ? exit : play
 end

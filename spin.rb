@@ -39,6 +39,7 @@ def spin(passed_bet, wager)
     { number: 36, color: "red" },
     { number: 00, color: "none" }
   ]
+
   rand_num = @nums.sample
   bet = passed_bet
   eval_spin(rand_num, passed_bet, wager)  
@@ -48,9 +49,12 @@ def eval_spin(num, bet, wager)
   arr_num = num[:number]
   arr_col = num[:color]
   puts ""
-  puts "Your call was: " + bet.capitalize
+  puts "Your call is: " + bet.capitalize
   print "The ball rests on: "
   print "#{arr_num}" + " " + "#{arr_col}".capitalize + "\n"
+  if arr_num == 0
+    failure
+  end
   case bet
     when "red", "black"
       if arr_col == bet
@@ -74,26 +78,27 @@ def eval_spin(num, bet, wager)
         failure
       end
     when "low"                          #condense low + high
-      if arr_num != 0
         if arr_num < 19
           odds = 1
           success(wager, odds)
         else
           failure
         end
-      else
-        puts "oh no!!!!!"
-      end
     when "high"
-      if arr_num != 0
         if arr_num > 19
           odds = 1
           success(wager, odds)
         else
           failure
         end
-      else
-        puts "oh no!!!!!"
+    when "dozen"
+      case @dozen_opt
+        when 1
+          arr_num < 13 ? success(wager, 2) : failure
+        when 2
+          arr_num.between?(13, 25) ? success(wager, 2) : failure
+        when 3
+          arr_num > 24 ? success(wager, 2) : failure
       end
   end
 end
@@ -101,8 +106,8 @@ end
 def success(wager, odds)
   winnings = wager + (wager * odds)
   puts "Congratulations!"
-  print "You win: $"
-  puts winnings
+  print "Net winnings: $"
+  puts wager * odds
   @temp_wallet = @temp_wallet + winnings
   puts "Your wallet now holds $" + "#{@temp_wallet}"
   play

@@ -1,5 +1,6 @@
 require "pry"
-require_relative 'player'
+require "colorize"
+require_relative "player"
 
 
 class Casino

@@ -1,9 +1,9 @@
-require_relative 'wallet'
+require_relative "wallet"
 
 class Player
   MIN_AGE = 21
   attr_accessor :name, :age
-  
+
   def initialize
     puts "What is your name, player?"
     @name = gets.strip

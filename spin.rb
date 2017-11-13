@@ -61,12 +61,14 @@ def eval_spin(num, bet, wager)
       end
     when "even"                         #condense even + odd
       if arr_num.even? == true
+        odds = 1
         success(wager, odds)
       else
         failure
       end
     when "odd"
       if arr_num.odd? == true
+        odds = 1
         success(wager, odds)
       else
         failure
@@ -74,6 +76,7 @@ def eval_spin(num, bet, wager)
     when "low"                          #condense low + high
       if arr_num != 0
         if arr_num < 19
+          odds = 1
           success(wager, odds)
         else
           failure
@@ -84,6 +87,7 @@ def eval_spin(num, bet, wager)
     when "high"
       if arr_num != 0
         if arr_num > 19
+          odds = 1
           success(wager, odds)
         else
           failure

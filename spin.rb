@@ -139,7 +139,7 @@ def eval_spin(num, bet, wager)
       arr_num == @straight_opt ? success(wager, 35) : failure
     else
       puts "Invalid call. You will be refunded.".red
-      @temp_wallet += wager
+      $wallet += wager
       play
   end
 end
@@ -151,14 +151,14 @@ def success(wager, odds)
   print "Net winnings: $"
   net_win = wager * odds
   puts "#{net_win}".green
-  @temp_wallet = @temp_wallet + winnings
-  puts "Your wallet now holds $".green + "#{@temp_wallet}".green + "\n"
+  $wallet = $wallet + winnings
+  puts "Your wallet now holds $".green + "#{$wallet}".green + "\n"
   play
 end
 
 def failure
   puts "You lose!".red
   puts ""
-  puts "Your wallet now holds $" + "#{@temp_wallet}".red
-  @temp_wallet == 0 ? exit : play
+  puts "Your wallet now holds $" + "#{$wallet}".red
+  $wallet == 0 ? exit : play
 end

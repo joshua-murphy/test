@@ -4,10 +4,8 @@ require "colorize"
 class Roulette
 
   def initialize
-
-    @temp_wallet = 500    
-    
-    puts "Roulette!"
+    puts ""
+    puts "Play Roulette!".yellow
     play
 
   end
@@ -26,7 +24,7 @@ class Roulette
 
     case bet
       when "exit"
-        exit
+      
       when "help"
         help_menu
       when @bet_options.include?(bet.capitalize) == false
@@ -130,16 +128,16 @@ end
   end
 
   def get_bet(bet)
-    puts "How much would you like to wager? You currently have: $" + "#{@temp_wallet}".green
+    puts "How much would you like to wager? You currently have: $" + "#{$wallet}".green
     initial_bet = gets.to_i.round(-1)
     puts "Wager converted to $" + "#{initial_bet}"
     if initial_bet == 0
       puts "Please choose a valid wager"
       get_bet(bet)
     end
-    @temp_wallet -= initial_bet
-    if @temp_wallet < 0
-      @temp_wallet += initial_bet
+    $wallet -= initial_bet
+    if $wallet < 0
+      $wallet += initial_bet
       puts "You don't have that much!"
       get_bet(bet)
     end
@@ -147,5 +145,3 @@ end
   end
 
 end
-
-Roulette.new

@@ -47,7 +47,8 @@ class SlotMachine
     def spin_it
       $wallet -= 15
       if $wallet < 0
-        puts "Oh no! You are all out of spins.".red
+        puts "You don't have any money, get out!".red
+        exit
       end
         puts " "
 # .sample randomizes the output/slots

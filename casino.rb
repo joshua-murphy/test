@@ -3,6 +3,7 @@ require "colorize"
 require_relative "player"
 require_relative "roulette"
 require_relative "slots"
+require_relative "blackjack"
 
 class Casino
 
@@ -17,7 +18,6 @@ class Casino
 	end
 
 	def menu
-		#puts Wallet.amount
 		puts "You have: $" + "#{$wallet}".green
 		puts ""
 		@options = ["BlackJack", "Slots", "Roulette", "Exit"]
@@ -25,7 +25,8 @@ class Casino
 		choice = gets.to_i - 1
 		case choice
 			when 0
-				puts "BlackJack!"
+
+				GameInit.new.start_game
 			when 1
 				SlotMachine.new
 			when 2

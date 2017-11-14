@@ -36,14 +36,16 @@ class Deck
 
 end
 
-class Wallet
-  attr_accessor :bankroll
-
-  def initialize(amount)
-    @bankroll = amount
-  end
-
   def show_bankroll
-    puts "\nYour bankroll is $#{@bankroll}"
+    puts "\nYour bankroll is $#{$wallet}"
   end
-end
+
+# class Wallet
+#   attr_accessor :bankroll
+
+#   def initialize(amount)
+#     @bankroll = amount
+#   end
+
+
+# end

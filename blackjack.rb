@@ -3,12 +3,15 @@ require_relative 'blackjack_classes'
 
 class GameInit
   def initialize
+    if $wallet <= 0
+      puts "You don't have any money, get out!".red
+      exit
+    end
     @player = Player.new
     @dealer = Dealer.new
     @deck = Deck.new
-    @wallet = Wallet.new(1000)
     @bet = 0
-    @show_bet = lambda { |bet| puts "Your current bet is #{bet}"}
+    @show_bet = lambda { |bet| puts "Your current bet is $#{bet}"}
     @score_lamb = lambda do |name, x|
       case x[0]
         when "2", "3", "4", "5", "6", "7", "8", "9", "10"
@@ -36,7 +39,7 @@ class GameInit
       if replay_input == "Y"
         GameInit.new.start_game
       else
-        exit # will be changed to 'back to casino'
+        
       end
     end
 
@@ -71,21 +74,21 @@ class GameInit
       dealer_hand_count
       if @player.score == 21 && @player.score != @dealer.score
         puts "BlackJack!!! Player Wins!"
-        @wallet.bankroll += (@bet * 2.5)
-        @wallet.show_bankroll
+        $wallet += (@bet * 2.5)
+        show_bankroll
         @replay.call
       elsif @player.score == @dealer.score
         puts "Push. Money is Returned"
-        @wallet.bankroll += @bet
-        @wallet.show_bankroll
+        $wallet += @bet
+        show_bankroll
       elsif 21 - @player.score < 21 - @dealer.score
         puts "Player Wins"
-        @wallet.bankroll += (@bet * 1.5)
-        @wallet.show_bankroll
+        $wallet += (@bet * 1.5)
+        show_bankroll
         @replay.call
       else
         puts "Dealer Wins"
-        @wallet.show_bankroll
+        show_bankroll
         @replay.call
       end
     end
@@ -97,7 +100,7 @@ class GameInit
       elsif @player.score > 21
         @player.show_score
         puts "Player Busts"
-        @wallet.show_bankroll
+        show_bankroll
         @replay.call
       end
     end
@@ -106,8 +109,8 @@ class GameInit
       if @dealer.score > 21
         @dealer.show_score
         puts "Dealer Busts"
-        @wallet.bankroll += (@bet * 1.5)
-        @wallet.show_bankroll
+        $wallet += (@bet * 1.5)
+        show_bankroll
         @replay.call
       end
     end
@@ -119,13 +122,13 @@ class GameInit
     #opening text
     puts "\n--Let's Play Some BlackJack!!!--"
     puts "----------"
-    @wallet.show_bankroll
+    show_bankroll
     puts "Place your initial bet"
     puts "----------"
 
     @bet = gets.strip.to_f
-    @wallet.bankroll -= @bet
-    @wallet.show_bankroll
+    $wallet -= @bet
+    show_bankroll
 
     puts "\n"
     @show_bet.call(@bet)
@@ -153,9 +156,9 @@ class GameInit
     first_round_input = gets.strip
     case first_round_input
       when "1"
-        @wallet.bankroll += (@bet / 2)
+        $wallet += (@bet / 2)
         puts "You Were Returned #{((@bet / 2).to_s)}"
-        @wallet.show_bankroll
+        show_bankroll
         @replay.call
       when "2"
         #pick new card/show cards/check for win/update score/show score
@@ -215,5 +218,3 @@ class GameInit
       end
     end
 end
-
-GameInit.new.start_game

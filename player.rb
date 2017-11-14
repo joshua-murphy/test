@@ -18,3 +18,5 @@ class Player
   end
 
 end
+
+Player.new

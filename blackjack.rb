@@ -39,7 +39,7 @@ class GameInit
       if replay_input == "Y"
         GameInit.new.start_game
       else
-        
+        exit
       end
     end
 

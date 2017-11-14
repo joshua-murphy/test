@@ -160,5 +160,8 @@ def failure
   puts "You lose!".red
   puts ""
   puts "Your wallet now holds $" + "#{$wallet}".red
-  $wallet == 0 ? exit : play
+  if $wallet == 0
+  else
+    play
+  end
 end

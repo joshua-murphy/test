@@ -2,7 +2,7 @@ require "pry"
 require "colorize"
 require_relative "player"
 require_relative "roulette"
-
+require_relative "slots"
 
 class Casino
 
@@ -27,7 +27,7 @@ class Casino
 			when 0
 				puts "BlackJack!"
 			when 1
-				puts "Slots!"
+				SlotMachine.new
 			when 2
 				Roulette.new
 			when 3

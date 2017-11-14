@@ -50,7 +50,7 @@ class SlotMachine
       $wallet -= 25
       if $wallet < 0
         puts "Oh no! You are all out of spins.".red
-        exit
+      
       end
         puts " "
 # .sample randomizes the output/slots
@@ -70,7 +70,7 @@ class SlotMachine
       if replay == "1"
         spin_it
       elsif replay == "2"
-        exit
+        
       end
     end
 
@@ -84,5 +84,3 @@ class SlotMachine
       end
     end
 end
-
-SlotMachine.new

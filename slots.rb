@@ -1,6 +1,4 @@
 require 'pry'
-require_relative 'wallet'
-require 'colorize'
 
 # slot machine
 class SlotMachine
@@ -25,15 +23,15 @@ class SlotMachine
         puts "You currently have $#{$wallet}".green
         puts "How much money would you like to bet today?".magenta
         puts " "
-        bet_amount = gets.to_i
+        @bet_amount = gets.to_i
         puts " "
 # if user tries to bet anything less than $1, it will spit them back to the welcome text
-      if bet_amount < 1
+      if @bet_amount < 1
         puts "Come on! You have to at least bet $1..."
         puts " "
         first_spin
       end
-        modify_wallet(bet_amount)
+        modify_wallet(@bet_amount)
         spin_it
     end
 # user's wallet is modified once they make bet and will notify user once it is down to 0
@@ -47,10 +45,9 @@ class SlotMachine
     end
 # runs every time user wants to spin
     def spin_it
-      $wallet -= 25
+      $wallet -= 15
       if $wallet < 0
         puts "Oh no! You are all out of spins.".red
-      
       end
         puts " "
 # .sample randomizes the output/slots
@@ -70,17 +67,18 @@ class SlotMachine
       if replay == "1"
         spin_it
       elsif replay == "2"
-        
       end
     end
 
     def check_winner
       if @output1 == @output2 && @output2 == @output3 && @output1 == @output3
-        $wallet += ( $wallet * 3 )
-        puts "WINNER! You now have #{$wallet}.".green
+        $wallet += @bet_amount * 2
+        puts "JACKPOT! You now have #{$wallet}.".green
       elsif @output1 == @output2 || @output1 == @output3 || @output2 == @output3
-        $wallet += ( $wallet * 2 )
+        $wallet += @bet_amount
         puts "So close! You now have #{$wallet} in your winnings.".yellow
+      else
+        puts "Your wallet now holds #{$wallet}".yellow
       end
     end
 end

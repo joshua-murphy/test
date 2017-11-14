@@ -10,7 +10,7 @@ class Casino
 	attr_accessor :player, :wallet
 
 	def initialize
-		$wallet = 100				
+		$wallet = 150
 		puts ""		
 		puts "Welcome to the Ruby Casino!".yellow
 		@player = Player.new

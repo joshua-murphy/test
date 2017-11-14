@@ -81,6 +81,7 @@ class GameInit
         puts "Push. Money is Returned"
         $wallet += @bet
         show_bankroll
+        @replay.call
       elsif 21 - @player.score < 21 - @dealer.score
         puts "Player Wins"
         $wallet += (@bet * 1.5)
